@@ -67,7 +67,7 @@
             <h3> Espanhol </h3>
             <p> Nível intermediário</p>
         </div>
-        <h2>Informações adicionais</h2>
+        <h2 class="info1">Informações adicionais</h2>
 
         <p> Possui um Endereço alternativo para trabalhos na cidade de São Paulo,
             próximo a Estação Lago Azul.
