@@ -17,11 +17,19 @@
   include_once "header.php";
   require_once "conecta.php";
   ?>
-  <main>
+  <main class="container">
 
-    <table class="container">
+    <br><br>
+    <table>
 
       <h1 class="container">Lista de clientes</h1>
+
+      <br><br>
+
+      <a href="formcadClientes.php" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Inserir</a>
+
+      <br><br>
+
       <thead>
         <tr>
           <th>ID</th>
@@ -48,9 +56,33 @@
             <td><?php echo $dados['id']; ?></td>
             <td><?php echo $dados['nomeCliente']; ?></td>
             <td><?php echo $dados['CPF']; ?></td>
-            <td><?php echo $dados['dataNasc']; ?></td>
+            <td><?php $dataNasc = date('d/m/Y', strtotime($dados['dataNasc']));
+                echo $dataNasc; ?></td>
             <td> <a class="btn-floating btn-small waves-effect waves-light greenyellow"><i class="material-icons">edit</i></a></td>
-            <td> <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">delete</i></a></td>
+            <td> <a href="#modal<?php echo $dados['id']; ?>" class="btn-floating btn-small waves-effect waves-light red modal-trigger"><i class="material-icons">delete</i></a></td>
+
+            <!-- Modal Structure -->
+            <div id="modal<?php echo $dados['id']; ?>" class="modal">
+              <div class="modal-content">
+                <h4>Atenção</h4>
+                <p>Você confirma a exclusão do usuário <?php echo $dados['nomeCliente']; ?> ?</p>
+              </div>
+              <div class="modal-footer">
+
+                <form action="excluir.php" method="post">
+
+                  <input type="hidden" name="id" value="<?php echo $dados['id']; ?>">
+
+                  <button type="submit" name="btn-deletar" class="modal-action modal-close waves-red btn red darken-1">
+                    Excluir </button>
+
+                  <button type="button" name="btn-cancelar" class="modal-action modal-close  btn waves-light green">
+                    Cancelar </button>
+
+                </form>
+              </div>
+            </div>
+
           </tr>
       </tbody>
     <?php
@@ -64,6 +96,23 @@
 
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="js/materialize.min.js"></script>
+
+  <script>
+    // M.AutoInit();
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, {
+
+        opacity: 0.7,
+        inDuration: 800,
+        outDuration: 1200,
+        dismissible: false,
+        startindTop: '10%',
+        endingtop: '15%'
+      });
+    });
+  </script>
+
 
 </body>
 
