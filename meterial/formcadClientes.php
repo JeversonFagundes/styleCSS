@@ -29,27 +29,96 @@
                 <div class="row">
 
                     <div class="input-field col s12">
-                        <input placeholder="Digite no formato XXX.XXX.XXX-XX" id="cpf" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
+                        <input placeholder="Digite no formato XXX.XXX.XXX-XX" id="cpf" name="cpf" type="text" class="validate" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
                         <label for="cpf">CPF</label>
                         <span class="helper-text" data-error="O campo deve ser preenchido no formato XXX.XXX.XXX-XX"></span>
                     </div>
                     <div class="input-field col s12">
-                        <input placeholder="Digite o seu nome" id="nome" type="text" class="validate" required>
+                        <input placeholder="Digite o seu nome" id="nome" name="nome" type="text" class="validate" required>
                         <label for="nome">Nome Completo</label>
                         <span class="helper-text" data-error="Você deve preencher corretamente esse campo"></span>
                     </div>
                     <div class="input-field col s12">
-                        <input placeholder="Digite sua matricula" id="matricula" type="text" class="validate" pattern="\d{1,10}" required>
+                        <input placeholder="Digite sua matricula" id="matricula" type="text" class="validate" pattern="^[0-9]{10}$" required>
                         <label for="mat">Matricula</label>
-                        <span class="helper-text" data-error="A sua matricula deve ter no máximo 10 caracteres e deve conter apenas números"></span>
+                        <span class="helper-text" data-error="A sua matricula deve conter 10 caracteres númericos"></span>
                     </div>
                     <div class="input-field col s12">
                         <input id="dataNasc" type="text" class="datepicker" name="dataNasc" required>
                         <label for="dataNasc">Data do seu nascimento</label>
                     </div>
 
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix"> lock</i>
+                        <input id="senha" type="password" class="validate" name="senha" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+                        <label for="senha">Senha</label>
+                        <span class="helper-text" data-error="Deve ter 8 caracteres, no mínimo e  conter pelo menos 1 letra maiuscula,1 letra minuscula, 1 número e 1 caracter especial;."> </span>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select>
+                                <option value="" disabled selected>Escolha a sua Opção</option>
+                                <option value="Cardeal">Cardeal</option>
+                                <option value="Ema">Ema</option>
+                                <option value="Gansos">Gansos</option>
+                            </select>
+                            <label style="font-size: 14px;">Qual a sua ave preferida?</label>
+                        </div>
+                    </div>
+
+                    <div class="col s12">
+                        <i class="material-icons prefix"> flight</i>
+                        <span style="margin-left: 12px;"> Escolha uma companhia: </span>
+
+                        <p>
+                            <label>
+                                <input class="with-gap" name="cia" type="radio" />
+                                <span>Latam</span>
+                            </label>
+
+                            <label>
+                                <input class="with-gap" name="cia" type="radio" />
+                                <span>Gol</span>
+                            </label>
+
+                            <label>
+                                <input class="with-gap" name="cia" type="radio" />
+                                <span>Azul</span>
+                            </label>
+                        </p>
+                    </div>
+
+                    <span> Doces preferidos: </span>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in checkbox-black" checked="checked" /> <span>Red</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in checkbox-black" checked="checked" />
+                            <span>Yellow</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in checkbox-black" checked="checked" />
+                            <span>Filled in</span>
+                        </label>
+                    </p>
+
                 </div>
 
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <p class="center-align">
+                        <button class="btn waves-effect waves-light brown  lighten-3" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i> </button>
+                    </p>
+                </div>
             </div>
         </form>
     </main>
@@ -68,6 +137,11 @@
                     console.log('Data selecionada: ', date);
                 }
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
         });
     </script>
 </body>
